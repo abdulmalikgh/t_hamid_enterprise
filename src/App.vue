@@ -1,9 +1,5 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Dynamic Form</router-link> |
-      
-    </div>
+  <div id="app"> 
     <router-view />
   </div>
 </template>

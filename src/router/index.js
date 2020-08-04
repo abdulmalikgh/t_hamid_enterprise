@@ -9,6 +9,12 @@ const routes = [
     name: "dynamic-form",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/DynamicForm.vue")
+  },
+  {
+    path: "/admin_login",
+    name: "admin_login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../admin/Login.vue")
   }
 ];
 
