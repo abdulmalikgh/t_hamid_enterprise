@@ -1,0 +1,5 @@
+#ignoring all errors from prettier
+
+* .vue
+* .js
+

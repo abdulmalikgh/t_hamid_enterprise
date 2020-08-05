@@ -10,12 +10,33 @@ const routes = [
     component: () =>
       import("../views/DynamicForm.vue")
   },
+  
+   /***
+   * Admin route
+   */
   {
     path: "/admin_login",
     name: "admin_login",
     component: () =>
       import("../admin/Login.vue")
-  }
+  },
+  /** Admin dashboard route */
+  {
+    path:'/admin',
+    name:'admin',
+    component:()=> import('../admin/AdminDashboard.vue'),
+      children: [
+        {
+        path:'/admin/home',
+        name:'admin-home',
+        component:()=> import('../admin/AdminHome.vue'),
+        },
+         
+      ]
+  },
+/***
+   * End of Admin route
+   */
 ];
 
 const router = new VueRouter({

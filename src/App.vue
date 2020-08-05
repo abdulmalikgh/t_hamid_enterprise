@@ -5,6 +5,11 @@
 </template>
 
 <style>
+ @font-face { 
+       font-family: "Montserrat";
+       src: url("../src/assets/fonts/montserrat/Montserrat-Regular.otf"); 
+       font-weight: normal;
+   }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
