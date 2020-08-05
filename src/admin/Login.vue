@@ -72,7 +72,7 @@ export default {
                 email:this.email,
                 password: this.password
             }
-            this.$http.post('http://45.33.13.129:8001/api/login', data)
+            this.$http.post('http://45.33.13.129:8001/api/login/', data)
                 .then( response => {
                     if(response.status === 200){
                         alert('success')

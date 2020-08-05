@@ -26,6 +26,14 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
       <li class="nav-item">
+        <router-link style="font-size:1.5em"
+         class="nav-link collapsed" :to="{name:'admin-categories'}" data-toggle="collapse" 
+        data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-list"></i>
+           &nbsp; <span>Categories</span>
+        </router-link>
+      </li>
+      <li class="nav-item">
         <router-link style="font-size:1.2em"
          class="nav-link collapsed" :to="{name:'admin-users'}" data-toggle="collapse" 
         data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -33,15 +41,6 @@
           &nbsp; <span>Products</span>
         </router-link>
       </li>
-      <li class="nav-item">
-        <router-link style="font-size:1.5em"
-         class="nav-link collapsed" :to="{name:'admin-manage-admins'}" data-toggle="collapse" 
-        data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fa fa-list"></i>
-           &nbsp; <span>Categories</span>
-        </router-link>
-      </li>
-      
       <!-- Divider -->
       <hr class="sidebar-divider">
 

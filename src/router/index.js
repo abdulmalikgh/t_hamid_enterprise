@@ -31,7 +31,11 @@ const routes = [
         name:'admin-home',
         component:()=> import('../admin/AdminHome.vue'),
         },
-         
+        {
+          path:'/admin/categories',
+          name:'admin-categories',
+          component:()=> import('../admin/Categories.vue'),
+          },
       ]
   },
 /***
