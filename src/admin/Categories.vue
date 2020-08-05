@@ -54,7 +54,21 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        
+                        <div class="contaner">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card border-left-info">
+                                        <div class="card-body">
+                                            <div class="row" v-if="get_category_error">
+                                                <div class="col">
+                                                    <p class="my-5 text-center">{get_category_error}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
                 </div>
@@ -65,7 +79,7 @@
 
 <script>
 import axios from 'axios'
-
+//urrs
 const add_category = 'http://45.33.13.129:8001/api/category';
 
 export default {
@@ -76,6 +90,7 @@ export default {
             loading: false,
             add_category_error:null,
             message:null,
+            get_category_error:null
         }
     },
     methods: {
@@ -101,7 +116,24 @@ export default {
                     this.add_category_error = "Network Error Try Again"
                 }
             })
+        },
+        getCategories() {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+            this.$http.get('http://45.33.13.129:8001/api/category')
+                .then(response => {
+                    if(response.status === 200) {
+                        this.categories = response.data.categories
+
+                    }
+                }).then(err => {
+                    if(err.request) {
+                        this.get_category_error = "Network Error Try Again"
+                    }
+                })
         }
+    },
+    created(){
+        this.getCategories();
     }
 }
 </script>
