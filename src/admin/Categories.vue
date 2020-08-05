@@ -89,8 +89,11 @@
                                                                                     @click="getId(category.id, key)">
                                                                                         Add sub-category ({{category.subcategories.length}}) 
                                                                                 </button>
-                                                                                <button class="btn btn-info mr-2">View</button>
-                                                                                <button class="btn btn-danger mr-2">Delete</button>
+                                                                                <button class="btn btn-info mr-2" >View</button>
+                                                                                <button class="btn btn-danger mr-2"
+                                                                                    type="button" data-toggle="modal" 
+                                                                                    data-target="#exampleModal"
+                                                                                    @click="getId(category.id, key)">Delete</button>
                                                                                 <button class="btn btn-primary">Update</button>
                                                                             </td>
                                                                         </tr>
