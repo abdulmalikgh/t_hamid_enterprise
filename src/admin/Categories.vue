@@ -17,15 +17,38 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-12 col-xs-12 col-md-9 col-lg 7">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Category Name</label>
-                                            <input type="email" class="form-control" v-model='category_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category Name" required>
-                                            
+                                <div class="col" v-if="add_category_error">
+                                    <div class="alert alert-danger">
+                                        <p>
+                                            {{add_category_error}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col" v-else-if="message">
+                                    <div class="alert alert-success">
+                                        <p>
+                                            {{message}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-md-9 col-lg-7">
+                                    <div class="card border-left-info py-5">
+                                        <div class="card-body">
+                                            <form @submit.prevent="addCategory">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Add Category</label>
+                                                    <input type="text" class="form-control" v-model='category_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category Name" required>
+                                                    
+                                                </div>
+                                                <button type="submit" class="btn btn-info">
+                                                    Send
+                                                    <div class="spinner-grow" role="status" v-if="loading">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </button>
+                                            </form>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Send</button>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -41,10 +64,44 @@
 </template> 
 
 <script>
+const add_category = 'http://45.33.13.129:8001/api/category';
+const header = {
+    'Authorization': `${localStorage.getItem('token')}`
+}
+
 export default {
     data() {
         return {
-            category_name
+            categories:[],
+            category_name:'',
+            loading: false,
+            add_category_error:null,
+            message:null,
+        }
+    },
+    methods: {
+        addCategory() {
+            this.loading = true
+
+            const data = {
+                'name': this.category_name,
+            }
+            this.$http.post(
+                add_category,
+                header,
+                data
+            ).then( response => {
+                if(response.status == 200) {
+                    this.loading = false,
+                    this.message = 'Category Created Successfully'
+                    this.categories.push(response.data)
+                }
+            }).catch(err => {
+                if(err) {
+                    this.loading = false;
+                    this.add_category_error = err.response.message
+                }
+            })
         }
     }
 }
