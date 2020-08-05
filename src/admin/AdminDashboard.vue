@@ -4,7 +4,7 @@
     <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center my-5" href="/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center my-5">
         <div class="sidebar-brand-icon rotate-n-15">
             
         </div>
@@ -19,7 +19,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <router-link class="nav-link" :to="{name:'admin-home'}">
+        <router-link class="nav-link" :to="{name:'admin-categories'}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </router-link>

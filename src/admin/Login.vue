@@ -5,8 +5,11 @@
         <!-- Outer Row -->
         <div class="row justify-content-center">
         <div class="col-12"  v-if="error">
-            <div class="alert alert-danger">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <p>{{error}}</p>
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
         <div class="col-xl-10 col-lg-12 col-md-9">
@@ -75,13 +78,22 @@ export default {
             this.$http.post('http://45.33.13.129:8001/api/login/', data)
                 .then( response => {
                     if(response.status === 200){
-                        alert('success')
                         this.loading = false
+                        localStorage.setItem('token',response.data.access_token)
+                        this.$router.push('/admin/home')
+                    }
+                    if(response.status === 401) {
+                        this.loading = false,
+                        this.error = 'Network Error Try Again.'
                     }
                 }).catch(err => {
-                    if(err) {
-                        console.log('error', err)
-                        this.loading = false;
+                    if(err.request) {
+                        this.loading = false,
+                        this.error = 'Incorrect Email and Password.'
+                    }
+                    if(err.status === 401) {
+                        this.loading = false,
+                        this.error = 'Network Error Try Again.'
                     }
                 })
 
