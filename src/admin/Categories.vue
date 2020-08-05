@@ -82,7 +82,13 @@
                                                                                 {{category.name}}
                                                                             </td>
                                                                             <td>
-                                                                                <button class="btn btn-success mr-2" >Add sub-category {{(category.subcategories.length)}}</button>
+                                                                                <button 
+                                                                                    class="btn btn-success mr-2" 
+                                                                                    type="button" data-toggle="modal" 
+                                                                                    data-target="#exampleModal"
+                                                                                    @click="getId(category.id, key)">
+                                                                                        Add sub-category ({{category.subcategories.length}}) 
+                                                                                </button>
                                                                                 <button class="btn btn-info mr-2">View</button>
                                                                                 <button class="btn btn-danger mr-2">Delete</button>
                                                                                 <button class="btn btn-primary">Update</button>
@@ -111,6 +117,58 @@
                 </div>
             </div>
         </div>
+
+         <!--- add sub category --->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Add SubCategory
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="col" v-if="add_category_error">
+                             <div class="alert alert-danger">
+                                <p>
+                                    {{add_category_error}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col" v-else-if="message">
+                            <div class="alert alert-success">
+                                <p>
+                                    {{message}}
+                                </p>
+                            </div>
+                        </div>
+                    <form @submit.prevent="addSubCategory">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Add Category</label>
+                                <input type="text" class="form-control" v-model='category_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category Name" required>
+                        </div>
+                        <div class="">
+                            <hr />
+                            <button type="button" class="btn btn-danger mr-2 mybtn" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-info">
+                                Send
+                                <div class="spinner-grow" role="status" v-if="loading">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                        </button>
+                        </div>
+                    </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!--- add new category ---> 
+  </div>
   </div>
 </template> 
 
@@ -131,10 +189,19 @@ export default {
             loading: false,
             add_category_error:null,
             message:null,
-            get_category_error:null
+            get_category_error:null,
+            category_id: null,
+            category_key:null,
         }
     },
     methods: {
+        getId(id, key) {
+            this.category_id = id
+            this.category_key = key
+            this.add_category_error = null
+            this.message = null
+        }
+        ,
         addCategory() {
             this.loading = true
             const data = {
@@ -171,7 +238,28 @@ export default {
                         this.get_category_error = "Network Error Try Again"
                     }
                 })
-        }
+        },
+        addSubCategory() {
+            this.loading = true
+            axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+            this.$http.post(`http://45.33.13.129:8001/api/category/${this.category_id}/subcategory`, {
+                'name':this.category_name
+            })
+                .then(response => {
+                    if(response.status === 201) {
+                        this.loading = false,
+                        this.message = "Sub-Category Created Successfully"
+                        this.category_name = null
+                    }
+                }).catch( err => {
+                    if(err.request) {
+                        this.loading = false
+                        this.add_category_error = 'Network Error Try Again'
+                    }
+                })
+
+            },
+        
     },
     created(){
         this.getCategories();
