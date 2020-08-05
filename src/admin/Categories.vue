@@ -17,23 +17,23 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="container">
                             <div class="row">
-                                <div class="col" v-if="add_category_error">
-                                    <div class="alert alert-danger">
-                                        <p>
-                                            {{add_category_error}}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col" v-else-if="message">
-                                    <div class="alert alert-success">
-                                        <p>
-                                            {{message}}
-                                        </p>
-                                    </div>
-                                </div>
                                 <div class="col-sm-12 col-xs-12 col-md-9 col-lg-7">
                                     <div class="card border-left-info py-5">
                                         <div class="card-body">
+                                            <div class="col" v-if="add_category_error">
+                                                <div class="alert alert-danger">
+                                                    <p>
+                                                        {{add_category_error}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col" v-else-if="message">
+                                                <div class="alert alert-success">
+                                                    <p>
+                                                        {{message}}
+                                                    </p>
+                                                </div>
+                                            </div>
                                             <form @submit.prevent="addCategory">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Add Category</label>
@@ -64,10 +64,9 @@
 </template> 
 
 <script>
+import axios from 'axios'
+
 const add_category = 'http://45.33.13.129:8001/api/category';
-const header = {
-    'Authorization': `${localStorage.getItem('token')}`
-}
 
 export default {
     data() {
@@ -82,24 +81,24 @@ export default {
     methods: {
         addCategory() {
             this.loading = true
-
             const data = {
                 'name': this.category_name,
             }
+             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
             this.$http.post(
                 add_category,
-                header,
                 data
             ).then( response => {
-                if(response.status == 200) {
+                if(response.status == 201) {
                     this.loading = false,
                     this.message = 'Category Created Successfully'
-                    this.categories.push(response.data)
+                    this.categories.push(response.data.catgory)
+                    this.category_name = null
                 }
             }).catch(err => {
-                if(err) {
+                if(err.request) {
                     this.loading = false;
-                    this.add_category_error = err.response.message
+                    this.add_category_error = "Network Error Try Again"
                 }
             })
         }
