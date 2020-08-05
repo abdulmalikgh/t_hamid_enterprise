@@ -9,7 +9,7 @@ import axios from 'axios'
 import '../src/assets/js/sb-admin-2.min.js'
 import '../src/assets/css/fontawesome-free/css/all.min.css';
 import '../src/assets/css/sb-admin-2.min.css';
-import '../src/assets/js/jquery-easing/jquery.easing.min.js'
+// import '../src/assets/js/jquery-easing/jquery.easing.min.js'
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false;

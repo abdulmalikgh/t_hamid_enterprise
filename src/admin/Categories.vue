@@ -1,6 +1,6 @@
 <template>
   <div> 
-      <div class="d-sm-flex align-items-center justify-content-between mb-4" >
+        <div class="d-sm-flex align-items-center justify-content-between mb-4" >
             <h2 class="h3 mb-0 text-gray-800">Categories</h2>
         </div>
         <div class="row">
@@ -64,6 +64,43 @@
                                                     <p class="my-5 text-center">{get_category_error}</p>
                                                 </div>
                                             </div>
+                                             <div class="row" v-else>
+                                                <div class="col">
+                                                   <div class="card">
+                                                       <div class="card-body">
+                                                           <div class="table-responsive">
+                                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>Category Name</th>
+                                                                        <th>Actions</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr  v-for="(category, key) in categories" :key='key'>
+                                                                            <td>
+                                                                                {{category.name}}
+                                                                            </td>
+                                                                            <td>
+                                                                                <button class="btn btn-success mr-2" >Add sub-category {{(category.subcategories.length)}}</button>
+                                                                                <button class="btn btn-info mr-2">View</button>
+                                                                                <button class="btn btn-danger mr-2">Delete</button>
+                                                                                <button class="btn btn-primary">Update</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th>Category Name</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -79,10 +116,14 @@
 
 <script>
 import axios from 'axios'
+
 //urrs
 const add_category = 'http://45.33.13.129:8001/api/category';
 
 export default {
+    components: {
+      
+    },
     data() {
         return {
             categories:[],
@@ -123,9 +164,9 @@ export default {
                 .then(response => {
                     if(response.status === 200) {
                         this.categories = response.data.categories
-
+                        console.log('response', this.categories)
                     }
-                }).then(err => {
+                }).catch(err => {
                     if(err.request) {
                         this.get_category_error = "Network Error Try Again"
                     }
@@ -134,6 +175,7 @@ export default {
     },
     created(){
         this.getCategories();
+        console.log('data', this.categories)
     }
 }
 </script>
