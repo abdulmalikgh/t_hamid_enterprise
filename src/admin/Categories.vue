@@ -86,7 +86,7 @@
                                                                                     class="btn btn-success mr-2" 
                                                                                     type="button" data-toggle="modal" 
                                                                                     data-target="#exampleModal"
-                                                                                    @click="getId(category.id)">
+                                                                                    @click="getId(category.id,key)">
                                                                                         Add sub-category ({{category.subcategories ? category.subcategories.length : 0}}) 
                                                                                 </button>
                                                                                 <button class="btn btn-info mr-2" >View</button>
@@ -133,11 +133,11 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" v-if="!category_name">
+                    <h5 class="modal-title" id="exampleModalLabel" v-if="!title">
                       Add SubCategory
                     </h5>
-                    <h5 class="modal-title" id="exampleModalLabel" v-else-if="category_name">
-                      Add Update {{category_name}}
+                    <h5 class="modal-title" id="exampleModalLabel" v-else-if="title">
+                         Update {{title}}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -161,20 +161,20 @@
                         </div>
                     <form @submit.prevent="addSubCategory">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Add Sub Category</label>
+                            <label for="exampleInputEmail1" v-if="!category_name">Add Sub Category</label>
                                 <input type="text" class="form-control" v-model='category_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category Name" required>
                         </div>
                         <div class="">
                             <hr />
                             <button type="button" class="btn btn-danger mr-2 mybtn" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-info" v-if="!category_name">
+                            <button type="submit" class="btn btn-info" v-if="!title">
                                 Send
                                 <div class="spinner-grow" role="status" v-if="loading">
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </button>
                             <button type="submit" class="btn btn-info"
-                                v-else-if="category_name"
+                                v-else-if="title"
                                 @click="updateCategory()">
                                 Update
                                 <div class="spinner-grow" role="status" v-if="loading">
@@ -202,7 +202,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <p v-if="!message"> Do you really want to delete {{category_name}}</p>
+                    <p v-if="!deleteMessage"> Do you really want to delete {{category_name}}</p>
                     <div class="col" v-else-if="deleteMessage">
                             <div class="alert alert-warning">
                                 <p>
@@ -213,7 +213,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-info mr-2 mybtn" @click="deleteCategory">
-                      Delete
+                        Yes
                         <div class="spinner-grow" role="status" v-if="loading">
                             <span class="sr-only">Loading...</span>
                         </div>
@@ -250,7 +250,8 @@ export default {
             get_category_error:null,
             category_id: null,
             category_key:null,
-            deleteMessage:null
+            deleteMessage:null,
+            title:null,
         }
     },
     methods: {
@@ -261,6 +262,8 @@ export default {
             this.category_name = categoryName ? categoryName : this.category_name
             this.message = null
             this.deleteMessage = null
+            this.title = categoryName ? categoryName : this.category_name
+            console.log('key',this.category_key)
         }
         ,
         addCategory() {
@@ -314,6 +317,9 @@ export default {
                         this.loading = false,
                         this.message = "Sub-Category Created Successfully"
                         this.category_name = null
+                        this.categories.splice(this.category_key,1)
+                        this.categories.push(response.data.subcategory)
+
                     }
                 }).catch( err => {
                     if(err.request) {
@@ -333,6 +339,7 @@ export default {
                         this.loading = false,
                         this.deleteMessage = `${this.category_name} deleted successfully`
                         this.categories.splice(this.category_key, 1)
+                        this.category_name = null
                     }
                 }).catch( err => {
                     if(err.request) {
@@ -344,6 +351,9 @@ export default {
         },
          updateCategory(){
             this.loading = true
+            this.message = null
+            this.add_category_error = null
+
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
             this.$http.put(`http://45.33.13.129:8001/api/category/${this.category_id}`,{
                     "name": this.category_name
@@ -351,7 +361,7 @@ export default {
                 .then(response => {
                     if(response.status === 201) {
                         this.loading = false,
-                        this.message = `${this.category_name} Update succesfully successfully`
+                        this.message = `${this.title} Updated succesfully`
                         this.categories.splice(this.category_key, 1)
                         this.getCategories.push(response.data.category)
                     }
