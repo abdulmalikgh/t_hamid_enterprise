@@ -125,12 +125,11 @@
                         </div>
                     <form @submit.prevent="updateSubCategory">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Add Sub Category</label>
-                                <input type="text" class="form-control" v-model='category_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category Name" required>
+                            <input type="text" class="form-control" v-model='category_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category Name" required>
                         </div>
                         <div class="">
                             <hr />
-                            <button type="submit" class="btn btn-info"
+                            <button type="submit" class="btn btn-info mr-2"
                                 >
                                 Update
                                 <div class="spinner-grow" role="status" v-if="load">
@@ -144,6 +143,7 @@
                 
               </div>
             </div>
+          </div>
           </div>
           <!--- add new category --->
   </div>
@@ -214,6 +214,31 @@ export default {
                     if(err.request) {
                         this.load = false
                         this.deleteMessage = "Network Error Try Again"
+                    }
+                })
+        },
+        updateSubCategory() {
+            
+             this.load = true
+             this.updateMessage = null
+
+            axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+            this.$http.put(`http://45.33.13.129:8001/api/category/${this.id}/subcategory/${this.category_id}`,
+                    {
+                        "name": this.category_name
+                    })
+                .then(response => {
+                    if(response.status === 200) {
+                        this.load = false
+                        this.updateMessage = 'Category Updated Successfully' 
+                        this.subCategories.splice(this.category_key,1)
+                        this.subCategories.push(response.data.subcategory)
+                        console.log('response', response.data)   
+                    }
+                }).catch(err => {
+                    if(err.request) {
+                        this.load = false
+                        this.updateMessage = "Network Error Try Again"
                     }
                 })
         }
