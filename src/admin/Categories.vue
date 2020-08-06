@@ -89,7 +89,8 @@
                                                                                     @click="getId(category.id,key)">
                                                                                         Add sub-category ({{category.subcategories ? category.subcategories.length : 0}}) 
                                                                                 </button>
-                                                                                <button class="btn btn-info mr-2" @click="categoryDetail(category.id)" >View</button>
+                                                                                <button class="btn btn-info mr-2"
+                                                                                     @click="categoryDetail(category.id,category.name)" >View</button>
                                                                                 <button class="btn btn-danger mr-2"
                                                                                     type="button" data-toggle="modal" 
                                                                                     data-target="#exampleModal1"
@@ -255,8 +256,8 @@ export default {
         }
     },
     methods: {
-        categoryDetail(id) {
-            this.$router.push(`/admin/category/${id}`)
+        categoryDetail(id,title) {
+            this.$router.push(`/admin/category/${id}/${title}`)
         }
         ,
         getId(id, key,categoryName) {

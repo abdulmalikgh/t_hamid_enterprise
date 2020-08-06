@@ -37,7 +37,7 @@ const routes = [
           component:()=> import('../admin/Categories.vue'),
           },
         {
-          path:'/admin/category/:id',
+          path:'/admin/category/:id/:title',
           name:'admin-subcategory',
           props:true,
           component:()=> import('../admin/CategoryDetails.vue'),
