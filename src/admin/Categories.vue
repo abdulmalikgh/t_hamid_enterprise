@@ -1,7 +1,7 @@
 <template>
   <div> 
         <div class="d-sm-flex align-items-center justify-content-between mb-4" >
-            <h2 class="h3 mb-0 text-gray-800">Categories</h2>
+            <h2 class="h3 mb-0 text-gray-800">Categories /</h2>
         </div>
         <div class="row">
             <div class="col-12">
@@ -89,7 +89,7 @@
                                                                                     @click="getId(category.id,key)">
                                                                                         Add sub-category ({{category.subcategories ? category.subcategories.length : 0}}) 
                                                                                 </button>
-                                                                                <button class="btn btn-info mr-2" >View</button>
+                                                                                <button class="btn btn-info mr-2" @click="categoryDetail(category.id)" >View</button>
                                                                                 <button class="btn btn-danger mr-2"
                                                                                     type="button" data-toggle="modal" 
                                                                                     data-target="#exampleModal1"
@@ -255,6 +255,10 @@ export default {
         }
     },
     methods: {
+        categoryDetail(id) {
+            this.$router.push(`/admin/category/${id}`)
+        }
+        ,
         getId(id, key,categoryName) {
             this.category_id = id
             this.category_key = key
@@ -353,7 +357,6 @@ export default {
             this.loading = true
             this.message = null
             this.add_category_error = null
-
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
             this.$http.put(`http://45.33.13.129:8001/api/category/${this.category_id}`,{
                     "name": this.category_name
@@ -361,7 +364,7 @@ export default {
                 .then(response => {
                     if(response.status === 201) {
                         this.loading = false,
-                        this.message = `${this.title} Updated succesfully`
+                        this.message = `${this.category_name} Updated succesfully`
                         this.categories.splice(this.category_key, 1)
                         this.getCategories.push(response.data.category)
                     }
