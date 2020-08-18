@@ -41,9 +41,13 @@ const routes = [
           name:'admin-add-product',
           props:true,
           component:()=> import('../admin/AddProduct.vue'),
-          },
+          }
       ]
   },
+  {
+    path:'*',
+    component: () => import('../components/404.vue')
+  }
 /***
    * End of Admin route
    */
