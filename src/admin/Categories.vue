@@ -90,7 +90,13 @@
                                                                                         Add sub-category ({{category.subcategories ? category.subcategories.length : 0}}) 
                                                                                 </button>
                                                                                 <button class="btn btn-info mr-2"
-                                                                                     @click="categoryDetail(category.id,category.name)" >View</button>
+                                                                                     @click="categoryDetail(category.id,category.name,'add')" >
+                                                                                        Add Product
+                                                                                </button>
+                                                                                <button class="btn btn-info mr-2"
+                                                                                     @click="categoryDetail(category.id,category.name)" >
+                                                                                        View
+                                                                                </button>
                                                                                 <button class="btn btn-danger mr-2"
                                                                                     type="button" data-toggle="modal" 
                                                                                     data-target="#exampleModal1"
@@ -256,8 +262,11 @@ export default {
         }
     },
     methods: {
-        categoryDetail(id,title) {
+        categoryDetail(id,title, add) {
             this.$router.push(`/admin/category/${id}/${title}`)
+            if(add) {
+                this.$router.push(`/admin/add_product/${id}/${title}`)
+            }
         }
         ,
         getId(id, key,categoryName) {

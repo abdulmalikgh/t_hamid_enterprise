@@ -37,10 +37,10 @@ const routes = [
           component:()=> import('../admin/Categories.vue'),
           },
         {
-          path:'/admin/category/:id/:title',
-          name:'admin-subcategory',
+          path:'/admin/add_product/:id/:title',
+          name:'admin-add-product',
           props:true,
-          component:()=> import('../admin/CategoryDetails.vue'),
+          component:()=> import('../admin/AddProduct.vue'),
           },
       ]
   },
