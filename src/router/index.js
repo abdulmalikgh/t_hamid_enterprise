@@ -27,14 +27,20 @@ const routes = [
     component:()=> import('../admin/AdminDashboard.vue'),
       children: [
         {
-        path:'/admin/home',
-        name:'admin-home',
-        component:()=> import('../admin/AdminHome.vue'),
+          path:'/admin/home',
+          name:'admin-home',
+          component:()=> import('../admin/AdminHome.vue'),
         },
         {
-          path:'/admin/categories',
-          name:'admin-categories',
-          component:()=> import('../admin/Categories.vue'),
+          path:'/admin/category/:id/:title',
+          props:true,
+          name:'admin-category',
+          component:()=> import('../admin/CategoryDetails.vue'),
+          },
+          {
+            path:'/admin/categories',
+            name: 'admin-categories',
+            component:()=> import('../admin/Categories.vue'),
           },
         {
           path:'/admin/add_product/:id/:title',

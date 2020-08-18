@@ -67,8 +67,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
-        
+        </div>    
       <!--- start of delete modal --->
         <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -148,7 +147,7 @@
           <!--- add new category --->
   </div>
 </template>
-
+ 
 <script>
 import axios from 'axios'
 

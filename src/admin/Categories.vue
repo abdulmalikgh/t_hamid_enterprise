@@ -100,8 +100,9 @@
                                                                                 <button class="btn btn-danger mr-2"
                                                                                     type="button" data-toggle="modal" 
                                                                                     data-target="#exampleModal1"
-                                                                                    @click="getId(category.id, key,category.name)"
-                                                                                   >Delete</button>
+                                                                                    @click="getId(category.id, key,category.name)" >
+                                                                                   Delete
+                                                                                   </button>
                                                                                 <button class="btn btn-primary"
                                                                                     type="button" data-toggle="modal" 
                                                                                     data-target="#exampleModal"
