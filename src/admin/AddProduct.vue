@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class v-if="message">
+      <div class="alert alert-danger">
+        <p>{{ message }}</p>
+      </div>
+    </div>
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-11 col-lg-10">
         <div class="col-12" style="float:left">
@@ -107,7 +112,7 @@ export default {
       }
       ,
         addProducts() {
-            this.loading = false
+            this.loading = true
             
             const formData = new FormData()
 
@@ -117,8 +122,7 @@ export default {
             formData.append('category_id', this.id)
             
             for ( let i = 0; i < this.files.length; i++) {
-              formData.append(`images[${i}]`, this.files[i].name) 
-              //console.log(`images[${i}]`,[this.files[i]]) 
+              formData.append(`images[]`, this.files[i]) 
             }
             
             axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
@@ -129,6 +133,11 @@ export default {
               if(response) {
                 this.loading = false;
                 this.message = 'Product Created Successfully'
+
+                this.name = null
+                this.description = null
+                this.price = null
+                this.files = null
               }
             }).catch( err => {
               if(err.request) {
