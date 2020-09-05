@@ -16,7 +16,7 @@
         </div>
         <div class="card border-left-info">
           <div class="card-header">
-            <h3>Add Product</h3>
+            <h3>Add Product to {{ title }}</h3>
           </div>
           <div class="card-body">
             <div class="row">
