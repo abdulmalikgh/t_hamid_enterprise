@@ -16,7 +16,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <router-link class="nav-link" :to="{name:'admin-categories'}">
+        <router-link class="nav-link" :to="{name:'admin-home'}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </router-link>
@@ -377,5 +377,9 @@ export default {
 </script>
 
 <style scoped>
-
+  h2{
+    font-size: 1.7em;
+    color:black;
+    font-weight:600;
+  }
 </style>

@@ -42,6 +42,25 @@
         </form>
       </div>
     </nav>
+
+    <div class="container-fluid" id="carousel">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../assets/hoddy.jpg" class="d-block w-100" alt="hoody" />
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/menandwomen.png" class="d-block w-100" alt="men and women snikker" />
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/snikker.jpg" class="d-block w-100" alt="snikkers" />
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/snikkers.jpg" class="d-block w-100" alt="snikkers" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -71,5 +90,14 @@ export default {
     padding-top:10px;
     padding-bottom:10px;
   }
-
+  #carousel img{
+    width:100vw;
+    height:95vh;
+    margin-top:77px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+ 
 </style>

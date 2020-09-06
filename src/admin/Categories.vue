@@ -369,7 +369,7 @@ export default {
                     if(err.request) {
                         this.get_category_error = "Network Error Try Again"
                     }
-        ``        })
+                })
         },
         addSubCategory() {
             this.loading = true
