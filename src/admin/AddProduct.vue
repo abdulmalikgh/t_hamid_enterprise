@@ -115,11 +115,15 @@ export default {
             this.loading = true
             
             const formData = new FormData()
-
+          
             formData.append('name',this.name)
             formData.append('description',this.description)
             formData.append('price',this.price)
             formData.append('category_id', this.id)
+   
+            if(this.$route.query.sub_category_id) {
+              formData.append('sub_category_id', this.$route.query.sub_category_id)
+            }
             
             for ( let i = 0; i < this.files.length; i++) {
               formData.append(`images[]`, this.files[i]) 

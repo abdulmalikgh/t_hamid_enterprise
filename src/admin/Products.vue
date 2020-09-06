@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12">
           <div class="card border-left-info">
-            <div class="row" v-if="error">
+            <div class="row" v-if="error" style="text-align: center">
               <div class="col-12">
                 <p class="my-5">{{error}}</p>
               </div>
@@ -16,7 +16,11 @@
                 </div>
               </div>
             </div>
-            <div class="row" v-else-if="!loading && products.length === 0">
+            <div
+              class="row"
+              v-else-if="!loading && products.length === 0"
+              style="text-align: center"
+            >
               <div class="col-12 my-5">
                 <p class="my-5">No Products Available</p>
               </div>
@@ -45,6 +49,20 @@
                             @click="productDetail(product.id)"
                             type="button"
                           >view detail</button>
+                          <button
+                            class="btn btn-danger mr-2"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#exampleModal1"
+                            @click="getId(product.id,key)"
+                          >Delete</button>
+                          <button
+                            class="btn btn-primary"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                            @click="update(product.id,key,product.category.id, product.name, product.price, product.description,product.images)"
+                          >Update</button>
                         </td>
                       </tr>
                     </tbody>
@@ -124,6 +142,22 @@
 
           <div class="modal-body">
             <div class="card-body">
+              <div class="row" v-if="message">
+                <div class="col-12">
+                  <div class="alert alert-succes">
+                    <p>{{message}}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" v-if="error">
+                <div class="col-12">
+                  <div class="alert alert-succes">
+                    <p>{{error}}</p>
+                  </div>
+                </div>
+              </div>
+
               <form @submit.prevent="updateProduct" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Product Name</label>
@@ -166,7 +200,7 @@
                 <button type="submit" class="btn btn-info">
                   <div class="spinner-grow" role="status" v-if="loading">
                     <span class="sr-only">Loading...</span>
-                  </div>Add Product
+                  </div>Update Product
                 </button>
               </form>
             </div>
@@ -187,7 +221,7 @@ export default {
             products:[],
             message:null,
             loading:false,
-            error: false,
+            error: null,
             id:null,
             productName:null,
             key:null,
@@ -195,22 +229,75 @@ export default {
             description:null,
             name:null,
             price:null,
-            files:null
+            files:null,
+            categoryId:null,
 
         }
     },
     methods: {
-        uploadFiles(event){
+      update(id,key,category_id,name,price,description, images){
+        this.id = id
+        this.key = key
+        this.categoryId = category_id
+        this.name = name
+        this.price = price
+        this.description = description 
+       
+      },
+      getId(id,key){
+
+          this.id = id
+        
+        },
+      uploadFiles(event){
           this.files = event.target.files
         },
-        close(){
+      close(){
           this.message = null
           this.error = null
         },
-        productDetail(id){
+      productDetail(id){
             this.$router.push(`product/${id}`)
         },
+      updateProduct(){
+          this.loading = true
+          this.message = false
 
+            
+            const formData = new FormData()
+
+            formData.append('name',this.name)
+            formData.append('description',this.description)
+            formData.append('price',this.price)
+            formData.append('category_id', this.id)
+            
+            for ( let i = 0; i < this.files.length; i++) {
+              formData.append(`images[]`, this.files[i]) 
+              console.log('Images', this.files)
+            }
+            
+            axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+     
+            this.$http.put(`http://45.33.13.129:8001/api/product/${this.id}`, 
+                formData
+            ).then(response => {
+              if(response) {
+                this.loading = false;
+                this.message = 'Product Created Successfully'
+
+                this.name = null
+                this.description = null
+                this.price = null
+                this.files = null
+              }
+            }).catch( err => {
+              if(err.request) {
+                this.loading = false;
+                this.error = 'Network Error Try Again'
+              }
+            })
+        }
+        ,
         deleteProduct() {
             this.message = null
 
@@ -258,8 +345,10 @@ export default {
 
                     this.loading = false
 
-                    this.products = response.data.products
-                    console.log('products', response.data.products)
+                    const product = response.data.products
+
+                    this.products = product
+
                   }
                
              }).catch (error => {

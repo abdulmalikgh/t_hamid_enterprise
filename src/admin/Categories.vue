@@ -90,7 +90,7 @@
                     <div class="card-body">
                       <div class="row" v-if="get_category_error">
                         <div class="col">
-                          <p class="my-5 text-center">{get_category_error}</p>
+                          <p class="my-5 text-center">{{get_category_error}}</p>
                         </div>
                       </div>
                       <div class="row" v-else>

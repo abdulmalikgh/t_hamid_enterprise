@@ -59,6 +59,11 @@
                             data-toggle="modal"
                             data-target="#exampleModal1"
                           >Delete</button>
+                          <button
+                            class="btn btn-success"
+                            @click="categoryDetail(category.id,category.name,'add')"
+                            type="button"
+                          >Add Product</button>
                         </td>
                       </tr>
                     </tbody>
@@ -188,6 +193,11 @@ export default {
         }
     },
     methods:{
+       categoryDetail(id,title){
+            
+                this.$router.push(`/admin/add_product/${this.id}/${title}?sub_category_id=${id}`)
+            
+        },
         getId(id,name,key){
             this.deleteMessage = null
             this.updateMessage = null

@@ -38,6 +38,7 @@
                   <div class="col-12">
                     <p>Name: {{ product.name }}</p>
                     <p>Category: {{ product.category.name }}</p>
+                    <p v-if="product.sub_category">Sub-Category: {{product.sub_category.name}}</p>
                     <p>Description: {{ product.description }}</p>
                     <p>Price : GHC : {{ product.price }}</p>
                   </div>
@@ -76,9 +77,6 @@ export default {
         }
     },
     methods: {
-          getId(){
-
-          },
           getProducts(){
                
                this.loading = true
