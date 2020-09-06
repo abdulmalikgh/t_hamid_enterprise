@@ -9,7 +9,7 @@
                 <p class="my-5">{{error}}</p>
               </div>
             </div>
-            <div class="row" v-else-if="loading">
+            <div class="row" v-else-if="loading" style="text-align: center">
               <div class="col-12 my-5 py-5">
                 <div class="spinner-grow text-info" role="status" v-if="loading">
                   <span class="sr-only">Loading...</span>
@@ -208,7 +208,7 @@ export default {
           this.error = null
         },
         productDetail(id){
-            this.id = id
+            this.$router.push(`product/${id}`)
         },
 
         deleteProduct() {
