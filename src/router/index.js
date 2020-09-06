@@ -6,8 +6,8 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: "/",
-		name: "dynamic-form",
-		component: () => import("../views/DynamicForm.vue"),
+		name: "home",
+		component: () => import("../views/Home.vue"),
 	},
 
 	/***
