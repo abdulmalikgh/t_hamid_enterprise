@@ -22,18 +22,6 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#about">ABOUT</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#theInstitute">THE INSTITUTE</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#resourcespartners">RESOURCE PERSONS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#contact">CONTACT</a>
-          </li>
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
@@ -43,23 +31,8 @@
       </div>
     </nav>
 
-    <div class="container-fluid" id="carousel">
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="../assets/hoddy.jpg" class="d-block w-100" alt="hoody" />
-          </div>
-          <div class="carousel-item">
-            <img src="../assets/menandwomen.png" class="d-block w-100" alt="men and women snikker" />
-          </div>
-          <div class="carousel-item">
-            <img src="../assets/snikker.jpg" class="d-block w-100" alt="snikkers" />
-          </div>
-          <div class="carousel-item">
-            <img src="../assets/snikkers.jpg" class="d-block w-100" alt="snikkers" />
-          </div>
-        </div>
-      </div>
+    <div class="container-fluid inner-pages-containter">
+      <router-view />
     </div>
   </div>
 </template>
@@ -73,14 +46,15 @@ export default {
 
 <style scope>
   nav {
-    border-bottom:2px solid black;
+    border-bottom:7px solid #f5f5f5;
+    background-color: #fff;
   }
   a{
     color:black;
   }
   a.navbar-brand {
     font-weight: 500;
-    font-size: 2em;
+    font-size: 1.5em;
   }
   a.navbar-brand:hover, a.navbar-brand:active {
     color: black;
@@ -90,14 +64,7 @@ export default {
     padding-top:10px;
     padding-bottom:10px;
   }
-  #carousel img{
-    width:100vw;
-    height:95vh;
-    margin-top:77px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+  .inner-pages-containter{
+    background-color:#f5f5f5
   }
- 
 </style>

@@ -8,6 +8,12 @@ const routes = [
 		path: "/",
 		name: "home",
 		component: () => import("../views/Home.vue"),
+		children: [
+			{
+				path: "/home",
+				component: () => import("../views/Hero.vue"),
+			},
+		],
 	},
 
 	/***
@@ -77,6 +83,13 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 	if (to.path === "/admin") {
 		next("/admin/home");
+	} else {
+		next();
+	}
+});
+router.beforeEach((to, from, next) => {
+	if (to.path === "/") {
+		next("/home");
 	} else {
 		next();
 	}
