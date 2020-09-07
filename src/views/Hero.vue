@@ -1,5 +1,29 @@
 <template>
   <div class="row justify-content-center page-wrapper">
+    <div class="col-3 categories">
+      <div class="row">
+        <div class="col-12">
+          <p>sess</p>
+          <ul>
+            <li>
+              <a href>New In</a>
+            </li>
+            <li>
+              <a href>Men</a>
+            </li>
+            <li>
+              <a href>Women</a>
+            </li>
+            <li>
+              <a href>Footwear</a>
+            </li>
+            <li>
+              <a href>Accessories</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="col-6 carousel-container">
       <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -33,11 +57,17 @@ export default {
   }
   .carousel img{
     width:100%;
-    height: 500px;
+    height: 400px;
     border-radius:10px;
     border:2px solid #f5f5f5;
     background-position: center;
     background-size: cover;
     background-repeat:no-repeat;
   }
+  .categories{
+    background-color:#fff;
+    border:2px solid #f5f5f5;
+    color:#fff;
+    border-radius: 10px;
+  } 
 </style>

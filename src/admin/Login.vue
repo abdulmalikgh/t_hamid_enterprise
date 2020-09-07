@@ -1,60 +1,71 @@
 <template>
-  <div id="admin_login"  class="bg-primary" style="width:100%; height:100vh">
+  <div id="admin_login" class="bg-primary" style="width:100%; height:100vh">
     <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-        <div class="col-12"  v-if="error">
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <p>{{error}}</p>
-                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+      <!-- Outer Row -->
+      <div class="row justify-content-center">
+        <div class="col-12" v-if="error">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p>{{error}}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
         <div class="col-xl-10 col-lg-12 col-md-9">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
+              <!-- Nested Row within Card Body -->
+              <div class="row">
                 <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                    <img src="../assets/logo.png" alt="">
+                  <img src="../assets/logo.png" alt />
                 </div>
                 <div class="col-lg-6">
-                    <div class="p-5">
+                  <div class="p-5">
                     <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">ADMIN LOGIN</h1>
+                      <h1 class="h4 text-gray-900 mb-4">ADMIN LOGIN</h1>
                     </div>
                     <form class="user" @submit.prevent="login">
-                        <div class="form-group">
-                        <input type="email" v-model="email" required class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <div class="form-group">
+                        <input
+                          type="email"
+                          v-model="email"
+                          required
+                          class="form-control form-control-user"
+                          id="exampleInputEmail"
+                          aria-describedby="emailHelp"
+                          placeholder="Enter Email Address..."
+                        />
+                      </div>
+                      <div class="form-group py-3">
+                        <input
+                          type="password"
+                          v-model="password"
+                          required
+                          class="form-control form-control-user"
+                          id="exampleInputPassword"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-user btn-block">
+                        Login
+                        <div class="spinner-grow" role="status" v-if="loading">
+                          <span class="sr-only">Loading...</span>
                         </div>
-                        <div class="form-group py-3">
-                        <input type="password" v-model="password" required class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                            Login
-                            <div class="spinner-grow" role="status" v-if="loading">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </button>
+                      </button>
                     </form>
-                    <hr>
+                    <hr />
                     <div class="text-center">
-                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                      <a class="small" href="forgot-password.html">Forgot Password?</a>
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
-
+          </div>
         </div>
-
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -84,16 +95,16 @@ export default {
                     }
                     if(response.status === 401) {
                         this.loading = false,
-                        this.error = 'Network Error Try Again.'
+                        this.error = 'Incorrect Username and Password.'
                     }
                 }).catch(err => {
-                    if(err.request) {
+                    if(err.response.status === 401) {
                         this.loading = false,
-                        this.error = 'Incorrect Email and Password.'
+                        this.error = 'Incorrect Username and password.'
                     }
-                    if(err.status === 401) {
-                        this.loading = false,
-                        this.error = 'Network Error Try Again.'
+                    if(err.request) {
+                       this.loading = false,
+                        this.error = 'Network Error Try Again.' 
                     }
                 })
 

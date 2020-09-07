@@ -43,7 +43,7 @@
           <div class="card-body">
             <div class="row" style="text-align: center">
               <div class="col-12">
-                <p class="my-5 text-info">{{ categories.length }}</p>
+                <p class="my-5 text-info" style="font-size:2em">{{ categories.length }}</p>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
           <div class="card-body">
             <div class="row" style="text-align: center">
               <div class="col-12">
-                <p class="my-5 text-info">{{ products.length }}</p>
+                <p class="my-5 text-info" style="font-size:2em">{{ products.length }}</p>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default {
                     const product = response.data.products
 
                     this.products = product
-                    console.log('products', product)
+                  
 
                   }
                
@@ -126,6 +126,7 @@ export default {
                     if(response.status === 200) {
 
                         this.categories = response.data.categories
+                        console.log('Categories', this.categories)
     
                     }
                 }).catch(err => {
@@ -137,10 +138,6 @@ export default {
                     }
                 })
         },
-
-    getCategories(){
-
-    }
 
   },
   computed:{
