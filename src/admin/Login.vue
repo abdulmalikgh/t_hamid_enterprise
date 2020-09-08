@@ -104,7 +104,7 @@ export default {
                     }
                     if(err.request) {
                        this.loading = false,
-                        this.error = 'Network Error Try Again.' 
+                        this.error = 'Network Error Try Again' 
                     }
                 })
 

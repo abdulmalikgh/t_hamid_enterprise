@@ -26,7 +26,7 @@
 
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" />
-          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn my-sm-0" type="submit">SEARCH</button>
         </form>
       </div>
     </nav>
@@ -44,10 +44,11 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
   nav {
-    border-bottom:7px solid #f5f5f5;
+    /* border-bottom:7px solid #f5f5f5; */
     background-color: #fff;
+    box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
   }
   a{
     color:black;
@@ -66,5 +67,9 @@ export default {
   }
   .inner-pages-containter{
     background-color:#f5f5f5
+  }
+  .btn{
+    color:#fff;
+    background-color:#f68b1e;
   }
 </style>
