@@ -34,12 +34,17 @@
     <div class="container-fluid inner-pages-containter">
       <router-view />
     </div>
+
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from '../views/Footer'
 export default {
-
+  components:{
+    Footer:Footer
+  }
 
 }
 </script>
