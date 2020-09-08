@@ -1,112 +1,172 @@
-<template>
-  <div class="row justify-content-center page-wrapper">
-    <div class="col-2 categories">
-      <div class="row header">
-        <div class="col-12">
+  <template>
+  <div id="id">
+    <div class="d-flex justify-content-center page-wrapper">
+      <div class="categories">
+        <div class="header">
           <h3>Categories</h3>
         </div>
+        <div class="row">
+          <div class="col-12">
+            <ul>
+              <li>
+                <a href>
+                  <i class="fas fa-folder-plus"></i>
+                  New In
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <i class="fas fa-male"></i>
+                  Men
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <i class="fas fa-female"></i>
+                  Women
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <i class="fas fa-child"></i>
+                  Kids
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <i class="fas fa-shoe-prints"></i>
+                  Footwear
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <i class="fas fa-keyboard"></i>
+                  Accessories
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <ul>
-            <li>
-              <a href>
-                <i class="fas fa-folder-plus"></i>
-                New In
-              </a>
-            </li>
-            <li>
-              <a href>
-                <i class="fas fa-male"></i>
-                Men
-              </a>
-            </li>
-            <li>
-              <a href>
-                <i class="fas fa-female"></i>
-                Women
-              </a>
-            </li>
-            <li>
-              <a href>
-                <i class="fas fa-child"></i>
-                Kids
-              </a>
-            </li>
-            <li>
-              <a href>
-                <i class="fas fa-shoe-prints"></i>
-                Footwear
-              </a>
-            </li>
-            <li>
-              <a href>
-                <i class="fas fa-keyboard"></i>
-                Accessories
-              </a>
-            </li>
-          </ul>
+
+      <div class="carousel-container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../assets/hoddy.jpg" class="d-block w-100" alt="hoody" />
+            </div>
+            <div class="carousel-item">
+              <img src="../assets/snikker.jpg" class="d-block w-100" alt="snikkers" />
+            </div>
+            <div class="carousel-item">
+              <img src="../assets/snikkers.jpg" class="d-block w-100" alt="snikkers" />
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="row">
+          <div class="col-12">
+            <ul>
+              <li>
+                <a href>
+                  <i class="fab fa-whatsapp-square"></i>
+                  Whatssap
+                </a>
+              </li>
+              <li>
+                <a href>
+                  <i class="fab fa-facebook-square"></i>
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <i class="fas fa-phone-square-alt"></i>
+                Call us on
+                <br />+233 550965633
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-7 carousel-container">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="../assets/hoddy.jpg" class="d-block w-100" alt="hoody" />
-          </div>
-          <div class="carousel-item">
-            <img src="../assets/snikker.jpg" class="d-block w-100" alt="snikkers" />
-          </div>
-          <div class="carousel-item">
-            <img src="../assets/snikkers.jpg" class="d-block w-100" alt="snikkers" />
-          </div>
+    <div class="d-flex justify-content-center">
+      <div class="content">
+        <div class="col-12 content-header">
+          <h3>Top Selling Items</h3>
         </div>
-        <a
-          class="carousel-control-prev"
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a
-          class="carousel-control-next"
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="col-2 contact">
-      <div class="row">
-        <div class="col-12">
-          <ul>
-            <li>
-              <i class="fab fa-whatsapp-square"></i>
-              Whatssap
-            </li>
-            <li>
-              <i class="fab fa-facebook-square"></i>
-              Facebook
-            </li>
-            <li>
-              <i class="fas fa-phone-square-alt"></i>
-              Call us on
-              <br />+233 550965633
-            </li>
-          </ul>
+        <div class="row content-images">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-2 content-image">
+                <a href>
+                  <img class="img-fluid" src="../assets/hoddy.jpg" alt />
+                  <p>Long men hoodie</p>
+                  <p>GHC 30</p>
+                </a>
+              </div>
+              <div class="col-2 content-image">
+                <a href>
+                  <img class="img-fluid" src="../assets/hoddy.jpg" alt />
+                  <p>Long men hoodie</p>
+                  <p>GHC 30</p>
+                </a>
+              </div>
+              <div class="col-2 content-image">
+                <a href>
+                  <img class="img-fluid" src="../assets/hoddy.jpg" alt />
+                  <p>Long men hoodie</p>
+                  <p>GHC 30</p>
+                </a>
+              </div>
+              <div class="col-2 content-image">
+                <a href>
+                  <img class="img-fluid" src="../assets/hoddy.jpg" alt />
+                  <p>Long men hoodie</p>
+                  <p>GHC 30</p>
+                </a>
+              </div>
+              <div class="col-2 content-image">
+                <a href>
+                  <img class="img-fluid" src="../assets/hoddy.jpg" alt />
+                  <p>Long men hoodie</p>
+                  <p>GHC 30</p>
+                </a>
+              </div>
+              <div class="col-2 content-image">
+                <a href>
+                  <img class="img-fluid" src="../assets/hoddy.jpg" alt />
+                  <p>Long men hoodie</p>
+                  <p>GHC 30</p>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -121,10 +181,10 @@ export default {
 
 <style scoped>
   .page-wrapper{
-    padding-top:100px;
+    padding:100px 40px 20px 40px;
     width:100%;
     background-color:#f5f5f5;
-    padding-bottom:50px;
+    
   }
   .carousel img{
     width:100%;
@@ -135,21 +195,27 @@ export default {
     background-repeat:no-repeat;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
   }
+  .carousel-container {
+    width: 60%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
   .categories{
     background-color:#fff;
     color:#fff;
     border-radius: 10px;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
+    width:20%;
   } 
   .header h3{
     color:#fff;
     font-size: 1.2em;
     font-weight: 500;
-    padding:10px 0;
+    padding:15px 0;
     text-align:center;
 
   }
-  .header div {
+  .header{
     background-color:#f68b1e;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -173,6 +239,7 @@ export default {
     border-radius:10px;
     height: 200px;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
+    width:20%;
   }
   .contact ul li i{
     color:#f68b1e;
@@ -181,5 +248,34 @@ export default {
   }
   .row{
     justify-content: center;
+  }
+  .content{
+    background-color: #fff;
+    margin:0 40px 20px 40px;
+  }
+  .content-header{
+    background-color:#f68b1e;
+    padding-top:5px;
+    padding-bottom:5px;
+  }
+  .content-header h3{
+    color:#fff;
+    font-size: 1.2em;
+    padding:10px 0;
+  }
+  .content-images{
+    padding:30px 20px;
+  }
+  .content-images p{
+    font-size: .9em;
+    padding-bottom:0!important;
+  }
+  .content-images a{
+    color:black;
+    text-decoration: none;
+  }
+  .content-image:hover{
+   box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.12);
+   
   }
 </style>

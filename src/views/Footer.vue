@@ -19,8 +19,7 @@ export default {
 <style scoped>
     .container-fluid{
         background-color: #000;
-        position: absolute;;
-        bottom: 0;
+        margin-top:0;
     }
     p{
         color:#fff;

@@ -31,7 +31,7 @@
       </div>
     </nav>
 
-    <div class="container-fluid inner-pages-containter">
+    <div class="container-fluid inner-pages-container">
       <router-view />
     </div>
 
@@ -70,8 +70,9 @@ export default {
     padding-top:10px;
     padding-bottom:10px;
   }
-  .inner-pages-containter{
-    background-color:#f5f5f5
+  .inner-pages-container{
+    background-color:#f5f5f5;
+    margin-bottom:0px;
   }
   .btn{
     color:#fff;
