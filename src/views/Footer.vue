@@ -23,6 +23,11 @@ export default {
     }
     p{
         color:#fff;
-        padding:10px 0;   
+        padding:20px 0;   
     }
+    @media screen and (max-width:500px) {
+    p{
+      font-size: .9em;
+    }
+  }
 </style>

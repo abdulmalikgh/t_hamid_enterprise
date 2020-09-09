@@ -73,6 +73,8 @@ export default {
   .inner-pages-container{
     background-color:#f5f5f5;
     margin-bottom:0px;
+    padding-right: 0px;
+    padding-left:0px;
   }
   .btn{
     color:#fff;
