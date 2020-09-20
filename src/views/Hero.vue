@@ -113,7 +113,7 @@
       </div>
     </div>
 
-    <!-- <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
       <div class="content">
         <div class="col-12 content-header">
           <h3>Top Selling Items</h3>
@@ -159,15 +159,15 @@
               <div class="col-2 content-image">
                 <a href>
                   <img class="img-fluid" src="../assets/hoddy.jpg" alt />
-                   <p>Long men hoodie</p>
+                  <p>Long men hoodie</p>
                   <p>GHC 30</p>
                 </a>
               </div>
             </div>
           </div>
         </div>
-    </div>-->
-    <!-- </div> -->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -188,7 +188,8 @@ export default {
     background-color:#f5f5f5;
     margin-right: 0px;
     margin-left: 0px;
-    
+    padding-right:50px;
+    padding-left:50px;
   }
   .carousel img{
     width:100%;
@@ -240,11 +241,9 @@ export default {
   .contact{
     background-color:#fff;
     padding-top: 10px;
-    /* border-radius:10px; */
     height: 200px;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
     width:20%;
-    margin-top:20px;
     margin-bottom:20px;
   }
   .contact ul li i{
@@ -290,6 +289,8 @@ export default {
     .page-wrapper{
       flex-direction: column;
       padding-top:62px;
+      padding-right: 0px;
+      padding-left: 0px;
     }
     .categories{
       width:100%;
@@ -317,6 +318,7 @@ export default {
     }
     .contact{
       height: 50px;
+      margin-top:20px;
     }
     .contact ul li{
       display:inline;

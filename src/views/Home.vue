@@ -51,7 +51,6 @@ export default {
 
 <style scoped>
   nav {
-    /* border-bottom:7px solid #f5f5f5; */
     background-color: #fff;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
   }
@@ -65,16 +64,14 @@ export default {
   a.navbar-brand:hover, a.navbar-brand:active {
     color: black;
   }
-
   .navbar-nav li {
     padding-top:10px;
     padding-bottom:10px;
   }
   .inner-pages-container{
     background-color:#f5f5f5;
-    margin-bottom:0px;
-    padding-right: 0px;
-    padding-left:0px;
+    padding:0px;
+    margin:0px;
   }
   .btn{
     color:#fff;
